@@ -1,0 +1,14 @@
+{
+  "name": "battle-recorder",
+  "version": "1.0.0",
+  "description": "small project for learning express.js, its an app for storing win/loss ration from tabletop wargaming matches",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
