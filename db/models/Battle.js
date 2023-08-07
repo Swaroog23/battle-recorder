@@ -1,6 +1,8 @@
 const User = require('./User')
-const sequelize = require('./database')
+const { getSequelizeInstance } = require('../database')
 const { DataTypes } = require('sequelize')
+
+const sequelize = getSequelizeInstance()
 
 const Battle = sequelize.define('Battle', {
     isWin: {

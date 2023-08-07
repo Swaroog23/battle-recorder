@@ -1,6 +1,8 @@
-const { hashUserPassword } = require('./db_utils')
-const sequelize = require('./database')
+const { hashUserPassword } = require('../db_utils')
+const { getSequelizeInstance } = require('../database')
 const { DataTypes } = require('sequelize')
+
+const sequelize = getSequelizeInstance()
 
 const User = sequelize.define('User', {
     username: {
@@ -24,4 +26,23 @@ User.beforeUpdate(async (user) => {
     }
 })
 
-module.exports = User
+
+const getUserByUsername = async (username) => {
+    const user = await User.findOne({ where: { username: username } })
+    if (user == null) {
+        return null
+    } else {
+        return user
+    }
+}
+
+const getUserById = async (id) => {
+    const user = await User.findOne({ where: { id: id } })
+    if (user == null) {
+        return null
+    } else {
+        return user
+    }
+}
+
+module.exports = { User, getUserByUsername, getUserById }
