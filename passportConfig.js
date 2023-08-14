@@ -28,8 +28,13 @@ const initPassport = (passport, getUserByUsername, getUserById) => {
 
     passport.serializeUser((user, done) => done(null, user.id))
     passport.deserializeUser((id, done) => done(null, async () => {
-        const user = await getUserById(id)
-        return user
+        let userToDeserialize = null
+        await getUserById(id)
+            .then(user => {
+                userToDeserialize = user
+                return
+            })
+        return userToDeserialize
     }))
 }
 

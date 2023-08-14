@@ -28,21 +28,11 @@ User.beforeUpdate(async (user) => {
 
 
 const getUserByUsername = async (username) => {
-    const user = await User.findOne({ where: { username: username } })
-    if (user == null) {
-        return null
-    } else {
-        return user
-    }
+    return await User.findOne({ where: { username: username } })
 }
 
 const getUserById = async (id) => {
-    const user = await User.findOne({ where: { id: id } })
-    if (user == null) {
-        return null
-    } else {
-        return user
-    }
+    return await User.findOne({ where: { id: id } })
 }
 
 module.exports = { User, getUserByUsername, getUserById }

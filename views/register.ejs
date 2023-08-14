@@ -1,4 +1,13 @@
 <h1>Register</h1>
+<% if (error != null) { %>
+<div>
+        <div>
+            <%= error %>
+        </div>
+</div>
+<br>
+<% } %>
+
 <form method="POST" action="/register">
     <div>
         <label for="username">Username</label>

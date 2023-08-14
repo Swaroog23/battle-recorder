@@ -27,7 +27,7 @@ app.use(passport.session())
 app.use(methodOverride('_method'))
 
 app.get('/register', checkIfNotAuthenticated, (req, res) => {
-    res.render("register.ejs")
+    res.render("register.ejs", { error: null })
 })
 
 app.post('/register', checkIfNotAuthenticated, async (req, res) => {
@@ -38,7 +38,7 @@ app.post('/register', checkIfNotAuthenticated, async (req, res) => {
     })
     .then(() => res.redirect('/login'))
     .catch(() => {
-        return res.redirect('/register')
+        return res.render('register.ejs', { error: "Username already taken, provide different one" })
     }) 
 })
 
@@ -63,13 +63,9 @@ app.delete('/logout', (req, res) => {
     res.redirect('/login')
 })
 
-app.get('/', chcekIfAuthenticated, (req, res) => {
-    res.render('index.ejs')
+app.get('/', chcekIfAuthenticated, async (req, res) => {
+    const user = await req.user()
+    res.render('index.ejs', { username: user.username })
 });
 
 app.listen(3000)
-
-
-// app.post('/login', (req, res) => {
-
-// })

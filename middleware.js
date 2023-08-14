@@ -8,10 +8,10 @@ const chcekIfAuthenticated = (req, res, next) => {
 
 const checkIfNotAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
-        return res.redirect('/')
+        res.redirect('/')
     }
 
-    next()
+    return next()
 }
 
 module.exports = { chcekIfAuthenticated, checkIfNotAuthenticated }
