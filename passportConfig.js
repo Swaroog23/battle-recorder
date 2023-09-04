@@ -12,7 +12,11 @@ const initPassport = (passport, getUserByUsername, getUserById) => {
 
         try {
             if (await bcrypt.compare(password, user.password)) {
-                return done(null, user)
+                const loggedUser = {
+                    id: user.id,
+                    username: user.username
+                }
+                return done(null, loggedUser)
             } else {
                 return done(null, false, { message: errorMsg})
             }
@@ -31,7 +35,10 @@ const initPassport = (passport, getUserByUsername, getUserById) => {
         let userToDeserialize = null
         await getUserById(id)
             .then(user => {
-                userToDeserialize = user
+                userToDeserialize = {
+                    id: user.id,
+                    username: user.username
+                }
                 return
             })
         return userToDeserialize

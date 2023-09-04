@@ -1,0 +1,41 @@
+<h1>
+    Add new battle
+</h1>
+<a href="/">Home screen</a>
+
+<% if (error != null) { %>
+    <div>
+            <div>
+                <%= error %>
+            </div>
+    </div>
+    <br>
+<% } %>
+
+<form method="POST" action="/add-battle">
+    <div>
+        <label for="isWin">Victorious?</label>
+        <input id="isWin" type="checkbox" name="isWin">
+    </div>
+    <div>
+        <label for="enemyUsername">Opponents name</label>
+        <input id="enemyUsername" type="text" name="enemyUsername">
+    </div>
+    <div>
+        <label for="userArmy">My army</label>
+        <input id="userArmy" type="text" name="userArmy">
+    </div>
+    <div>
+        <label for="enemyArmy">Opponents army</label>
+        <input id="enemyArmy" type="text" name="enemyArmy">
+    </div>
+    <div>
+        <label for="userScore">My Score</label>
+        <input id="userScore" type="number" name="userScore">
+    </div>
+    <div>
+        <label for="enemyScore">Opponents Score</label>
+        <input id="enemyScore" type="number" name="enemyScore">
+    </div>
+    <button type="submit">Add</button>
+</form>

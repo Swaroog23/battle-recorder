@@ -1,4 +1,3 @@
-const User = require('./User')
 const { getSequelizeInstance } = require('../database')
 const { DataTypes } = require('sequelize')
 
@@ -25,8 +24,5 @@ const Battle = sequelize.define('Battle', {
         type: DataTypes.INTEGER
     }
 })
-
-User.hasMany(Battle, { as: 'battles' })
-Battle.belongsTo(User);
 
 module.exports = Battle;

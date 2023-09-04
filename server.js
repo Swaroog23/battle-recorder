@@ -26,6 +26,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
 
+
 app.get('/register', checkIfNotAuthenticated, (req, res) => {
     res.render("register.ejs", { error: null })
 })
@@ -61,6 +62,32 @@ app.delete('/logout', (req, res) => {
     })
 
     res.redirect('/login')
+})
+
+app.get('/add-battle', chcekIfAuthenticated, (req, res) => {
+    res.render("addBattle.ejs", { error: null })
+})
+
+app.post('/add-battle', chcekIfAuthenticated, async (req, res) => {
+    const loggedUser = await req.user()
+    const user = await getUserById(loggedUser.id)
+    let { isWin, enemyUsername, userArmy, enemyArmy, userScore, enemyScore } = req.body;
+    isWin = isWin == 'on' 
+
+    await user.createBattle({
+        isWin: isWin,
+        enemyUsername: enemyUsername,
+        userArmy: userArmy,
+        enemyArmy: enemyArmy,
+        userScore: userScore,
+        enemyScore: enemyScore
+    })
+    .then(() => res.redirect('/'))
+    .catch(() => {
+        return res.render('addBattle.ejs', { 
+            error: "Error occured while adding battle entry. Try again."
+         })
+    }) 
 })
 
 app.get('/', chcekIfAuthenticated, async (req, res) => {
