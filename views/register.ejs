@@ -1,23 +1,40 @@
-<h1>Register</h1>
-<% if (error != null) { %>
-<div>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>Battle Recorder</title>
+		<link rel="stylesheet" href="/public/css/register.css">
+        <link rel="stylesheet" href="/public/css/styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&display=swap" rel="stylesheet">
+	</head>
+    <body>
+        <h1>Register</h1>
+        <% if (error != null) { %>
         <div>
-            <%= error %>
+                <div>
+                    <%= error %>
+                </div>
         </div>
-</div>
-<br>
-<% } %>
+        <br>
+        <% } %>
 
-<form method="POST" action="/register">
-    <div>
-        <label for="username">Username</label>
-        <input id="username" type="text" name="username" required>
-    </div>
-    <div>
-        <label for="password">Password</label>
-        <input id="password" type="password" name="password" required>
-    </div>
-    <button type="submit">Register</button>
-</form>
+        <form method="POST" action="/register">
+            <div>
+                <label for="username">Username</label>
+                <input id="username" type="text" name="username" required>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input id="password" type="password" name="password" required>
+            </div>
+            <button class="btn" type="submit">Register</button>
+        </form>
 
-<a href="/login">Login</a>
+        <a href="/login">
+            <button class="btn" type="button">Login</button>
+        </a>
+    </body>
+</html>

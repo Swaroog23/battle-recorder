@@ -6,4 +6,8 @@ const hashUserPassword = async (user) => {
     return user
 }
 
-module.exports = { hashUserPassword }
+const mapEmptyField = (field) => { 
+        return !field ? "Empty" : field 
+    }
+
+module.exports = { hashUserPassword, mapEmptyField }

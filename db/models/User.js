@@ -1,6 +1,6 @@
 // TODO: Figure out why without this import the association breaks and error is thrown
 //Error caught during initialization:  Error: User.hasMany called with something that's not a subclass of Sequelize.Model
-const Battle = require('./Battle')
+const { Battle } = require('./Battle')
 const { hashUserPassword } = require('../db_utils')
 const { getSequelizeInstance } = require('../database')
 const { DataTypes } = require('sequelize')

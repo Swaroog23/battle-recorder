@@ -1,7 +1,68 @@
-<h1> 
-    Hello there <%= username %>
-</h1>
-<form action="/logout?_method=DELETE" method="POST">
-    <button type="submit">Logout</button>
-</form>
-<a href="/add-battle">Add new battle</a>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>Battle Recorder</title>
+		<link rel="stylesheet" href="/public/css/index.css">
+        <link rel="stylesheet" href="/public/css/styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&display=swap" rel="stylesheet">
+	</head>
+    <body>
+        <h1> 
+            Hello there <%= username %>
+        </h1>
+        <div class="tableHeader">Battles</div>
+        <table class="battleTable">
+            <tr>
+                <th>
+                    Opponents Name 
+                </th>
+                <th>
+                    My Army 
+                </th>
+                <th>
+                    Opponents Army 
+                </th>
+                <th>
+                    My Score 
+                </th>
+                <th>
+                    Enemy Score 
+                </th>
+            </tr>
+            <% for( let i = 0; i < battles.length; i++ ) { %>
+                <tr <% if (battles[i].isWin) { %>
+                    class="victory"
+                <% } else { %>
+                    class="loss"
+                    <% } %>
+                >
+                    <td>
+                        <%= battles[i].enemyUsername %> 
+                    </td>
+                    <td>
+                        <%= battles[i].userArmy %> 
+                    </td>
+                    <td>
+                        <%= battles[i].enemyArmy %> 
+                    </td>
+                    <td>
+                        <%= battles[i].userScore %> 
+                    </td>
+                    <td>
+                        <%= battles[i].enemyScore %> 
+                    </td>
+                </tr>
+            <% } %>
+        </table>
+        <a class="addBattle" href="/add-battle">
+            <button class="btn" type="button">Add new battle</button>
+        </a>
+        <form action="/logout?_method=DELETE" method="POST">
+            <button class="btn" type="submit" role="button">Logout</button>
+        </form>
+    </body>
+</html>

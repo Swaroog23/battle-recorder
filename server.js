@@ -4,6 +4,7 @@ const passport = require("passport")
 const flash = require('express-flash')
 const session = require('express-session')
 const { User, getUserByUsername, getUserById } = require("./db/models/User")
+const { getBattlesByUserId } = require("./db/models/Battle")
 const { initDatabase } = require("./db/database")
 const initPassport = require('./passportConfig')
 const { chcekIfAuthenticated, checkIfNotAuthenticated } = require('./middleware')
@@ -15,6 +16,7 @@ initPassport(passport, getUserByUsername, getUserById)
 initDatabase()
 
 app.set('view-engine', 'ejs')
+app.use('/public', express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: false }))
 app.use(flash())
 app.use(session({
@@ -92,7 +94,20 @@ app.post('/add-battle', chcekIfAuthenticated, async (req, res) => {
 
 app.get('/', chcekIfAuthenticated, async (req, res) => {
     const user = await req.user()
-    res.render('index.ejs', { username: user.username })
+    const userBattles = await getBattlesByUserId(user.id)
+
+    if (userBattles.length == 0) {
+        userBattles.push({
+            isWin: false,
+            enemyUsername: "No Data",
+            enemyArmy: "No Data",
+            userArmy: "No Data",
+            enemyScore: "No Data",
+            userScore: "No Data"
+        })
+    }
+
+    res.render('index.ejs', { username: user.username, battles: userBattles })
 });
 
 app.listen(3000)

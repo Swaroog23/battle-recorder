@@ -1,0 +1,28 @@
+.battleTable {
+    border-spacing: 30px;
+    margin: 10px;
+    background-color: rgba(87, 87, 87, 0.604);
+  }
+.victory {
+    background-color: rgb(22, 96, 75);
+}
+.loss {
+    background-color: rgb(75, 13, 26);
+}
+.tableHeader {
+    font-weight: bold;
+    font-size: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.addBattle {
+    margin: 10px;
+}
+
+th, td {
+    padding: 15px;
+  }
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }

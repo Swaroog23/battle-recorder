@@ -1,41 +1,60 @@
-<h1>
-    Add new battle
-</h1>
-<a href="/">Home screen</a>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>Battle Recorder</title>
+		<link rel="stylesheet" href="/public/css/addBattle.css">
+        <link rel="stylesheet" href="/public/css/styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&display=swap" rel="stylesheet">
+	</head>
+    <body>
+        <h1>
+            Add new battle
+        </h1>
+        <a href="/">
+            <button class="btn" type="button">Home screen</button>
+        </a>
 
-<% if (error != null) { %>
-    <div>
+        <% if (error != null) { %>
             <div>
-                <%= error %>
+                    <div>
+                        <%= error %>
+                    </div>
             </div>
-    </div>
-    <br>
-<% } %>
+            <br>
+        <% } %>
 
-<form method="POST" action="/add-battle">
-    <div>
-        <label for="isWin">Victorious?</label>
-        <input id="isWin" type="checkbox" name="isWin">
-    </div>
-    <div>
-        <label for="enemyUsername">Opponents name</label>
-        <input id="enemyUsername" type="text" name="enemyUsername">
-    </div>
-    <div>
-        <label for="userArmy">My army</label>
-        <input id="userArmy" type="text" name="userArmy">
-    </div>
-    <div>
-        <label for="enemyArmy">Opponents army</label>
-        <input id="enemyArmy" type="text" name="enemyArmy">
-    </div>
-    <div>
-        <label for="userScore">My Score</label>
-        <input id="userScore" type="number" name="userScore">
-    </div>
-    <div>
-        <label for="enemyScore">Opponents Score</label>
-        <input id="enemyScore" type="number" name="enemyScore">
-    </div>
-    <button type="submit">Add</button>
-</form>
+        <form method="POST" action="/add-battle">
+            <div>
+                <label for="enemyUsername">Opponents name</label>
+                <input id="enemyUsername" type="text" name="enemyUsername">
+            </div>
+            <div>
+                <label for="userArmy">My army</label>
+                <input id="userArmy" type="text" name="userArmy">
+            </div>
+            <div>
+                <label for="enemyArmy">Opponents army</label>
+                <input id="enemyArmy" type="text" name="enemyArmy">
+            </div>
+            <div>
+                <label for="userScore">My Score</label>
+                <input id="userScore" type="number" name="userScore">
+            </div>
+            <div>
+                <label for="enemyScore">Opponents Score</label>
+                <input id="enemyScore" type="number" name="enemyScore">
+            </div>
+            <div>
+                <label class="container" for="isWin">Victorious?
+                    <input id="isWin" type="checkbox" name="isWin">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <button class="btn" type="submit">Add</button>
+        </form>
+    </body>
+</html>
